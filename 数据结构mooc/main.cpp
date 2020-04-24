@@ -130,16 +130,21 @@ int main()
 	cout << "start" << endl;
 	//testMap();
 
-	vector<string> strs;
-	strs.push_back("()");
-	strs.push_back("()[]{}");
-	strs.push_back("(]");
-	strs.push_back("([)]");
-	strs.push_back("{[]}");
-	for (size_t i = 0; i < strs.size(); i++)
-	{
-		printf("%d\n", isValid(strs[i]));
-	}
+	//vector<string> strs;
+	//strs.push_back("()");
+	//strs.push_back("()[]{}");
+	//strs.push_back("(]");
+	//strs.push_back("([)]");
+	//strs.push_back("{[]}");
+	//for (size_t i = 0; i < strs.size(); i++)
+	//{
+	//	printf("%d\n", isValid(strs[i]));
+	//}
+
+
+
+
+
 	//
 	//testLNode();
 
@@ -165,6 +170,9 @@ int main()
 	//	}
 	//	cout << endl;
 	//}
+
+	//²âÊÔµÚËÄ½²
+	//¶ş²æËÑË÷Êı
 
 
 

@@ -73,14 +73,14 @@ void InOrderBianli(BinTree bt)
 {
 	BinTree t = bt;
 	Stack1 s = createEmptyStack1();
-	while (t || isEmptyStack1(s))
+	while (t || !isEmptyStack1(s))
 	{
 		while (t)
 		{
 			PushStack1(s, t);
 			t = t->left;
 		}
-		if (isEmptyStack1(s))
+		if (!isEmptyStack1(s))
 		{
 			t = PopStack1(s);
 			cout << t->Data;
@@ -184,7 +184,7 @@ void CengTraversal(BinTree bt)
 	BinTree t = bt;
 	QueueL1 q = CreateQueueL1();
 	AddQL1(q, t);
-	while (IsEmptyQL1(q))
+	while (!IsEmptyQL1(q))
 	{
 		t = DeleteQL1(q);
 		cout << t->Data;

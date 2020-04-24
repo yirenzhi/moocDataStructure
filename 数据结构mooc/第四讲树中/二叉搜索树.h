@@ -5,11 +5,13 @@
 #include <iostream>
 
 using namespace std;
+
 #define MaxTree 10
 #define ElementType char
 #define Tree int
 #define Null -1
-typedef TreeNode4* Position, *BinTree;
+typedef struct TreeNode4* Position, *BinTree;
+
 struct TreeNode4
 {
 	ElementType data;
@@ -22,3 +24,6 @@ Position Find(ElementType X, BinTree BST);
 Position Find1(ElementType X, BinTree BST);		//非递归表示法
 Position FindMin(BinTree BST);
 Position FindMax(BinTree BST);
+BinTree Insert(ElementType X, BinTree BST);
+BinTree Delete(ElementType X, BinTree BST);
+

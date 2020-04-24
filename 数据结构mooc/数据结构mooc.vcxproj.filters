@@ -51,6 +51,9 @@
     <ClCompile Include="第四讲树中\二叉搜索树.cpp">
       <Filter>第四讲树中</Filter>
     </ClCompile>
+    <ClCompile Include="第三讲树上\树的存储.cpp">
+      <Filter>第三讲树上</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2_1.h">
@@ -67,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="第四讲树中\二叉搜索树.h">
       <Filter>第四讲树中</Filter>
+    </ClInclude>
+    <ClInclude Include="第三讲树上\树的存储.h">
+      <Filter>第三讲树上</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

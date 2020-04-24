@@ -17,9 +17,9 @@ struct TreeNode
 int jundgeTree(BinTree bt);
 void testTraveral();
 
-void PreOrderTraversal(BinTree BT); 
-void InOrderTraversal(BinTree BT);
-void PostOrderTraversal(BinTree BT);
+void PreOrderTraversal(BinTree BT); //先序遍历
+void InOrderTraversal(BinTree BT);	//中序遍历
+void PostOrderTraversal(BinTree BT);	//后序遍历
 
 #define MaxSize 1024
 typedef BinTree ElementType1;

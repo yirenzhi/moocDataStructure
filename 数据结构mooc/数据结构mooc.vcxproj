@@ -121,6 +121,7 @@
     <ClCompile Include="exercise7.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="堆栈.cpp" />
+    <ClCompile Include="第三讲树上\树的存储.cpp" />
     <ClCompile Include="第四讲树中\二叉搜索树.cpp" />
     <ClCompile Include="线性表的链式存储.cpp" />
     <ClCompile Include="队列.cpp" />
@@ -128,6 +129,7 @@
   <ItemGroup>
     <ClInclude Include="2_1.h" />
     <ClInclude Include="堆栈.h" />
+    <ClInclude Include="第三讲树上\树的存储.h" />
     <ClInclude Include="第四讲树中\二叉搜索树.h" />
     <ClInclude Include="线性表的链式存储.h" />
     <ClInclude Include="队列.h" />
