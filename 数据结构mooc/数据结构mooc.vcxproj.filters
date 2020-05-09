@@ -13,40 +13,19 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="线性结构">
-      <UniqueIdentifier>{3cabcb83-f014-4607-866f-d7545aa9e307}</UniqueIdentifier>
-    </Filter>
     <Filter Include="第三讲树上">
       <UniqueIdentifier>{2fd22917-dfc9-409a-b5bb-43a1a28e116d}</UniqueIdentifier>
     </Filter>
     <Filter Include="第四讲树中">
       <UniqueIdentifier>{0c5c7a8d-6b79-4303-a4da-93ae5b2075bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="第二讲线性结构">
+      <UniqueIdentifier>{3cabcb83-f014-4607-866f-d7545aa9e307}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="2_1.cpp">
-      <Filter>线性结构</Filter>
-    </ClCompile>
-    <ClCompile Include="线性表的链式存储.cpp">
-      <Filter>线性结构</Filter>
-    </ClCompile>
-    <ClCompile Include="队列.cpp">
-      <Filter>线性结构</Filter>
-    </ClCompile>
-    <ClCompile Include="堆栈.cpp">
-      <Filter>线性结构</Filter>
-    </ClCompile>
-    <ClCompile Include="exercise5.cpp">
-      <Filter>线性结构</Filter>
-    </ClCompile>
-    <ClCompile Include="exercise6.cpp">
-      <Filter>第三讲树上</Filter>
-    </ClCompile>
-    <ClCompile Include="exercise7.cpp">
-      <Filter>第三讲树上</Filter>
     </ClCompile>
     <ClCompile Include="第四讲树中\二叉搜索树.cpp">
       <Filter>第四讲树中</Filter>
@@ -54,25 +33,49 @@
     <ClCompile Include="第三讲树上\树的存储.cpp">
       <Filter>第三讲树上</Filter>
     </ClCompile>
+    <ClCompile Include="第三讲树上\exercise6.cpp">
+      <Filter>第三讲树上</Filter>
+    </ClCompile>
+    <ClCompile Include="第三讲树上\exercise7.cpp">
+      <Filter>第三讲树上</Filter>
+    </ClCompile>
+    <ClCompile Include="第二讲线性结构\2_1.cpp">
+      <Filter>第二讲线性结构</Filter>
+    </ClCompile>
+    <ClCompile Include="第二讲线性结构\exercise5.cpp">
+      <Filter>第二讲线性结构</Filter>
+    </ClCompile>
+    <ClCompile Include="第二讲线性结构\堆栈.cpp">
+      <Filter>第二讲线性结构</Filter>
+    </ClCompile>
+    <ClCompile Include="第二讲线性结构\队列.cpp">
+      <Filter>第二讲线性结构</Filter>
+    </ClCompile>
+    <ClCompile Include="第二讲线性结构\线性表的链式存储.cpp">
+      <Filter>第二讲线性结构</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="2_1.h">
-      <Filter>线性结构</Filter>
-    </ClInclude>
-    <ClInclude Include="线性表的链式存储.h">
-      <Filter>线性结构</Filter>
-    </ClInclude>
-    <ClInclude Include="队列.h">
-      <Filter>线性结构</Filter>
-    </ClInclude>
-    <ClInclude Include="堆栈.h">
-      <Filter>线性结构</Filter>
-    </ClInclude>
     <ClInclude Include="第四讲树中\二叉搜索树.h">
       <Filter>第四讲树中</Filter>
     </ClInclude>
     <ClInclude Include="第三讲树上\树的存储.h">
       <Filter>第三讲树上</Filter>
+    </ClInclude>
+    <ClInclude Include="base.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="第二讲线性结构\2_1.h">
+      <Filter>第二讲线性结构</Filter>
+    </ClInclude>
+    <ClInclude Include="第二讲线性结构\堆栈.h">
+      <Filter>第二讲线性结构</Filter>
+    </ClInclude>
+    <ClInclude Include="第二讲线性结构\队列.h">
+      <Filter>第二讲线性结构</Filter>
+    </ClInclude>
+    <ClInclude Include="第二讲线性结构\线性表的链式存储.h">
+      <Filter>第二讲线性结构</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

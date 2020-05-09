@@ -1,13 +1,5 @@
 #pragma once
-#include<iostream>
-using namespace std;
-typedef int ElementType;
-typedef struct LinkNode* LinkList;
-struct LinkNode
-{
-	ElementType Data;
-	LinkList Next;
-};
+#include "../base.h"
 
 LinkList LinkMakeEmpty();	//初始化一个空线性表
 LinkList LinkFindKth(int K, LinkList L);	//通过位序找到相应元素

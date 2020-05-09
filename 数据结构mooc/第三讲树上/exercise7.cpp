@@ -28,7 +28,7 @@ struct QNodeL1
 	NodeL1 *front;
 };
 
-typedef QNodeL1 * QueueL1;
+typedef struct QNodeL1 * QueueL1;
 QueueL1 CreateQueueL1();	//生成长度为maxsize的空队列
 void AddQL1(QueueL1 Q, ElementType1 item);	//将数据元素item插入队列Q中
 bool IsEmptyQL1(QueueL1 Q);		//判断队列是否为空

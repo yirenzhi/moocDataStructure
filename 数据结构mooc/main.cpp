@@ -1,8 +1,8 @@
 #include <iostream>
 #include <map>
 #include <string>
-#include "2_1.h"
-#include "堆栈.h"
+#include "第二讲线性结构\2_1.h"
+#include "第二讲线性结构\堆栈.h"
 #include <vector>
 #include <stack>
 //#include "第三讲树上/树的存储.h"
