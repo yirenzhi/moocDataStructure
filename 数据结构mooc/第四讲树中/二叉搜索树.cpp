@@ -87,20 +87,44 @@
  }
  BinTree Delete(ElementType X, BinTree BST)
  {
+	 Position temp;
 	 if (!BST)
 	 {
-		 return NULL;
-		 BST = (BinTree)malloc(sizeof(struct TreeNode4));
-		 BST->data = X;
-		 BST->left = BST->right = NULL;
+		 cout << "元素未找到。" << endl;
 	 }
 	 if (X<BST->data)
 	 {
-		 BST->left = Insert(X, BST->left);
+		 BST->left = Delete(X, BST->left);
 	 }
 	 else if (X>BST->data)
 	 {
-		 BST->right = Insert(X, BST->right);
+		 BST->right = Delete(X, BST->right);
+	 }
+	 else
+	 {
+		 //找到元素，通过他的子结点不同，进行不同的操作
+		 if (BST->left&&BST->right)
+		 {
+			 //重点，此处替换右子树的最小元素
+			 temp = FindMin(BST->right);
+			 BST->data = temp->data;
+			 //原本的又子树删除其最小元素
+			 BST->right = Delete(temp->data, BST->right);
+		 }
+		 else
+		 {
+			 temp = BST;
+			 if (!BST->left)	//	只有右节点或者没有结点，注意这里判断条件是非，而不是判断bst.right
+			 {
+				 BST = BST->right;
+			 }
+			 else {
+				 BST = BST->left;
+			 }
+			 free(temp);
+
+		 }
+
 	 }
 
 	 return BST;

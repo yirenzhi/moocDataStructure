@@ -134,6 +134,7 @@
     <ClInclude Include="第二讲线性结构\线性表的链式存储.h" />
     <ClInclude Include="第二讲线性结构\队列.h" />
     <ClInclude Include="第四讲树中\二叉搜索树.h" />
+    <ClInclude Include="第四讲树中\平衡二叉树.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

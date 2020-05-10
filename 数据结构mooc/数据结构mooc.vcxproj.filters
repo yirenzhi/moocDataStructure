@@ -77,5 +77,8 @@
     <ClInclude Include="第二讲线性结构\线性表的链式存储.h">
       <Filter>第二讲线性结构</Filter>
     </ClInclude>
+    <ClInclude Include="第四讲树中\平衡二叉树.h">
+      <Filter>第四讲树中</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
