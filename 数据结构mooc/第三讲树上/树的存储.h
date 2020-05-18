@@ -1,18 +1,10 @@
 #pragma once
 #include <iostream>
+#include "../base.h"
 using namespace std;
 
 
 
-typedef int ElementType;
-typedef struct TreeNode* BinTree;
-typedef BinTree Position;
-struct TreeNode	
-{
-	ElementType Data;
-	BinTree left;
-	BinTree right;
-};
 //计算数的高度,运用递归后序遍历的变换
 int jundgeTree(BinTree bt);
 void testTraveral();

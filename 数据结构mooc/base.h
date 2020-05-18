@@ -31,3 +31,13 @@ struct QNodeL
 	NodeL *rear;
 	NodeL *front;
 };
+
+typedef struct TreeNode* BinTree;
+typedef BinTree Position;
+struct TreeNode
+{
+	ElementType Data;
+	BinTree left;
+	BinTree right;
+//	TreeNode(ElementType x) :Data(x),left(NULL),right(NULL){}
+};

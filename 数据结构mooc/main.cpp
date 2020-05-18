@@ -5,7 +5,10 @@
 #include "第二讲线性结构\堆栈.h"
 #include <vector>
 #include <stack>
-//#include "第三讲树上/树的存储.h"
+#include "第四讲树中\平衡二叉树.h"
+#include "第四讲树中\exercise9.h"
+#include "第三讲树上\树的存储.h"
+
 using namespace std;
 void testExercise5();
 int testExercise6();
@@ -174,7 +177,9 @@ int main()
 	//测试第四讲
 	//二叉搜索数
 
+	//AVLNODE::AVLNodeTest().test();
 
+	EXERCISE9::Exercise9().test();
 
 	int m;
 	cin >> m;

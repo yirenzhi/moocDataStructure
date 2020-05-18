@@ -80,5 +80,8 @@
     <ClInclude Include="第四讲树中\平衡二叉树.h">
       <Filter>第四讲树中</Filter>
     </ClInclude>
+    <ClInclude Include="第四讲树中\exercise9.h">
+      <Filter>第四讲树中</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
