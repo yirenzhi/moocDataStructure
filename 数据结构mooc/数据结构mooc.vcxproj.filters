@@ -22,6 +22,9 @@
     <Filter Include="第二讲线性结构">
       <UniqueIdentifier>{3cabcb83-f014-4607-866f-d7545aa9e307}</UniqueIdentifier>
     </Filter>
+    <Filter Include="第五讲树下">
+      <UniqueIdentifier>{fe00f355-7160-41a7-988d-c7c77b97369d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -82,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="第四讲树中\exercise9.h">
       <Filter>第四讲树中</Filter>
+    </ClInclude>
+    <ClInclude Include="第五讲数下\Heap.h">
+      <Filter>第五讲树下</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
