@@ -25,6 +25,9 @@
     <Filter Include="第五讲树下">
       <UniqueIdentifier>{fe00f355-7160-41a7-988d-c7c77b97369d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="第六讲图上">
+      <UniqueIdentifier>{611ce382-275a-4d40-8a2e-47b7f45e25c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -88,6 +91,18 @@
     </ClInclude>
     <ClInclude Include="第五讲数下\Heap.h">
       <Filter>第五讲树下</Filter>
+    </ClInclude>
+    <ClInclude Include="第五讲数下\Huffman.h">
+      <Filter>第五讲树下</Filter>
+    </ClInclude>
+    <ClInclude Include="TestInherit.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="第六讲图上\Graph.h">
+      <Filter>第六讲图上</Filter>
+    </ClInclude>
+    <ClInclude Include="第六讲图上\Graph2.h">
+      <Filter>第六讲图上</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

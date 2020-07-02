@@ -8,7 +8,9 @@
 #include "第四讲树中\平衡二叉树.h"
 #include "第四讲树中\exercise9.h"
 #include "第三讲树上\树的存储.h"
-
+#include "TestInherit.h"
+#include "第六讲图上\Graph.h"
+#include "第六讲图上\Graph2.h"
 using namespace std;
 void testExercise5();
 int testExercise6();
@@ -179,7 +181,11 @@ int main()
 
 	//AVLNODE::AVLNodeTest().test();
 
-	EXERCISE9::Exercise9().test();
+	//EXERCISE9::Exercise9().test();
+
+	//testInherit();
+
+	GRAPH1::GraphJ().test();
 
 	int m;
 	cin >> m;
