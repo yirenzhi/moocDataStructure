@@ -110,7 +110,6 @@ bool isValid(string s) {
 	for (size_t i = 0; i < s.size(); i++)
 	{
 		char c = s[i];
-		;
 		if (mapStr.find(c)!=mapStr.end())
 		{
 			char topElement = staStr.empty() ? 'c' : staStr.top();
@@ -129,7 +128,14 @@ bool isValid(string s) {
 	return (staStr.empty());
 }
 
-
+typedef union 
+{
+	int a;
+	int b;
+	char c;
+	double d;
+	//string m;
+}testUnion;
 int main()
 {
 	cout << "start" << endl;
@@ -186,6 +192,10 @@ int main()
 	//testInherit();
 
 	GRAPH1::GraphJ().test();
+
+	//testUnion tempUnion;
+	//tempUnion.a = 1;
+
 
 	int m;
 	cin >> m;

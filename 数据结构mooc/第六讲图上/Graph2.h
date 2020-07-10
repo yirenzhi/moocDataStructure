@@ -55,8 +55,12 @@ namespace GRAPH2
 		LGraph CreateGraph(int VertexNum);
 		void InsertEdge(LGraph Graph, Edge E);
 		LGraph BuildGraph();
+		void Visit(Vertex V);
+		void DFS(LGraph graph, Vertex V, void(GraphL::*Visit)(Vertex));
+		void BFS(LGraph graph, Vertex S, void(GraphL::*Visit)(Vertex));
 
 	private:
+		vector<bool> Visited;
 
 	};
 
@@ -107,6 +111,48 @@ namespace GRAPH2
 		}
 		return graph;
 	}
+
+	void GraphL::Visit(Vertex V)
+	{
+		cout << "正在访问顶点" << V << endl;
+		Visited[V] = true;
+
+	}
+
+	void GraphL::DFS(LGraph graph, Vertex V, void(GraphL::* Visit)(Vertex))
+	{
+		this->Visit(V);
+
+		for (PtrToAdjVNode w = graph->G[V].FirstEdge; w; w=w->Next)
+		{
+			if (!Visited[w->AdjV])
+			{
+				DFS(graph, w->AdjV, Visit);
+			}
+
+		}
+	}
+
+	void GraphL::BFS(LGraph graph, Vertex S, void(GraphL::* Visit)(Vertex))
+	{
+		this->Visit(S);
+
+		queue<Vertex> verQue;
+		verQue.push(S);
+
+		while (!verQue.empty())
+		{
+			Vertex V1 = verQue.front();
+			verQue.pop();
+
+			for (PtrToAdjVNode w = graph->G[V1].FirstEdge; w; w = w->Next)
+			{
+				this->Visit(w->AdjV);
+				verQue.push(w->AdjV);
+			}
+		}
+	}
+
 
 
 }

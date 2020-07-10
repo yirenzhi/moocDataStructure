@@ -43,8 +43,9 @@ public:
 	MGraph BuildGraph();
 	void Visit(Vertex V);
 	void DFS(MGraph graph, Vertex V, void(GraphJ::*Visit)(Vertex));
-
+	void BFS(MGraph Graph, Vertex S, void(GraphJ::*Visit)(Vertex));
 	void test();
+	void init(int num);	//测试之前的初始化，主要用来将Visited全赋值为false
 private:
 	vector<bool> Visited;
 };
@@ -98,11 +99,12 @@ MGraph GraphJ::BuildGraph()
 void GraphJ::Visit(Vertex V)
 {
 	cout << "正在访问顶点" << V << endl;
+	Visited[V] = true;
+
 }
 void GraphJ::DFS(MGraph graph, Vertex V, void(GraphJ::*Visit)(Vertex))
 {
 	this->Visit(V);
-	Visited[V] = true;
 
 	for (int i = 0; i < graph->Nv; i++)
 	{
@@ -115,15 +117,50 @@ void GraphJ::DFS(MGraph graph, Vertex V, void(GraphJ::*Visit)(Vertex))
 	}
 }
 
+void GraphJ::BFS(MGraph Graph, Vertex S, void(GraphJ::* Visit)(Vertex))
+{
+	this->Visit(S);
+
+	queue<Vertex> verQue;
+	verQue.push(S);
+
+	while (!verQue.empty())
+	{
+		Vertex w = verQue.front();
+		verQue.pop();
+		for (int i = 0; i < Graph->G[w][i]; i++)
+		{
+			Vertex V1 = Graph->G[w][i];
+			if (V1 != INFINITY && !Visited[i])
+			{
+				//BFS(Graph, i, Visit);
+				this->Visit(V1);
+				verQue.push(V1);
+			}
+		}
+	}
+}
+
 void GraphJ::test()
 {
 	MGraph graph = BuildGraph();
-	for (size_t i = 0; i < graph->Nv; i++)
+	init(graph->Nv);
+//	void (GraphJ::*p)(Vertex) = Visit;
+	cout << "深度优先搜索：" << endl;
+	DFS(graph, 1, &GraphJ::Visit);
+
+	cout << "广度优先搜索：" << endl;
+	BFS(graph, 1, &GraphJ::Visit);
+
+
+}
+
+void GraphJ::init(int num)
+{
+	for (size_t i = 0; i < num; i++)
 	{
 		Visited.push_back(false);
 	}
-//	void (GraphJ::*p)(Vertex) = Visit;
-	DFS(graph, 1, &GraphJ::Visit);
 }
 
 }
