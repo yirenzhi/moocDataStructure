@@ -11,6 +11,7 @@
 #include "TestInherit.h"
 #include "第六讲图上\Graph.h"
 #include "第六讲图上\Graph2.h"
+#include <iomanip>
 using namespace std;
 void testExercise5();
 int testExercise6();
@@ -136,6 +137,12 @@ typedef union
 	double d;
 	//string m;
 }testUnion;
+
+
+void testshuzu(int a[],vector<int >b)
+{
+	cout << a[0]<<"  "<<b[0];
+}
 int main()
 {
 	cout << "start" << endl;
@@ -191,11 +198,18 @@ int main()
 
 	//testInherit();
 
-	GRAPH1::GraphJ().test();
+	//GRAPH1::GraphJ().test();
+	GRAPH2::GraphL().test();
 
+
+	
 	//testUnion tempUnion;
 	//tempUnion.a = 1;
 
+	//int a[10] = {0};
+	//vector<int> b = vector<int>(10, 1);
+	//vector<int> b (10, 1);
+	//testshuzu(a, b);
 
 	int m;
 	cin >> m;

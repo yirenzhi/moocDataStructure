@@ -1,6 +1,8 @@
 #pragma once
 #include "../base.h"
+#include <fstream>
 
+#include <direct.h>
 //"图的连接表表示法"
 
 namespace GRAPH2
@@ -53,12 +55,21 @@ namespace GRAPH2
 	{
 	public:
 		LGraph CreateGraph(int VertexNum);
-		void InsertEdge(LGraph Graph, Edge E);
+		void InsertEdge(LGraph Graph, Edge E,bool isD=true);
 		LGraph BuildGraph();
 		void Visit(Vertex V);
 		void DFS(LGraph graph, Vertex V, void(GraphL::*Visit)(Vertex));
 		void BFS(LGraph graph, Vertex S, void(GraphL::*Visit)(Vertex));
+		void test();
+		void init(int num);	//测试之前的初始化，主要用来将Visited全赋值为false
 
+		/* 邻接表存储 - 无权图的单源最短路算法 */
+		/* dist[]和path[]全部初始化为-1 */
+		void Unweighted(LGraph Graph, int dist[], int path[], Vertex S);
+		LGraph BuildGraphFromTxt();
+		//有权图的单源最短路算法
+		bool Dijkstra(LGraph Graph, int dist[], int path[], Vertex S);
+		Vertex FindMinDist(LGraph Graph, int dist[], bool collected[]);
 	private:
 		vector<bool> Visited;
 
@@ -75,19 +86,24 @@ namespace GRAPH2
 		}
 		return graph;
 	}
-	void GraphL::InsertEdge(LGraph Graph, Edge E)
+	void GraphL::InsertEdge(LGraph Graph, Edge E, bool isD)
 	{
-		PtrToAdjVNode newNode1 = (PtrToAdjVNode)malloc(sizeof(struct AdjVNode));
-		newNode1->AdjV = E->V1;
-		newNode1->Weight = E->Weight;
-		newNode1->Next = Graph->G[E->V2].FirstEdge->Next;
-		Graph->G[E->V2].FirstEdge = newNode1;
+		if (isD)
+		{
+			PtrToAdjVNode newNode1 = (PtrToAdjVNode)malloc(sizeof(struct AdjVNode));
+			newNode1->AdjV = E->V1;
+			newNode1->Weight = E->Weight;
+			newNode1->Next = Graph->G[E->V2].FirstEdge;
+			Graph->G[E->V2].FirstEdge = newNode1;
+		}
+
 
 		PtrToAdjVNode newNode2 = (PtrToAdjVNode)malloc(sizeof(struct AdjVNode));
 		newNode2->AdjV = E->V2;
 		newNode2->Weight = E->Weight;
-		newNode2->Next = Graph->G[E->V1].FirstEdge->Next;
+		newNode2->Next = Graph->G[E->V1].FirstEdge;
 		Graph->G[E->V1].FirstEdge = newNode2;
+
 
 	}
 	LGraph GraphL::BuildGraph()
@@ -98,15 +114,17 @@ namespace GRAPH2
 
 		LGraph graph = CreateGraph(Nv);
 		cout << "请输入边数" << endl;
-		cin >> graph->Nv;
-		if (graph->Nv>0)
+		cin >> graph->Ne;
+		if (graph->Ne>0)
 		{
 			Edge E = (Edge)malloc(sizeof(struct ENode));
-			cout << "按照起点 终点 权重的格式输入。";
-			for (int i = 0; i < graph->Nv; i++)
+			cout << "按照起点 终点 权重的格式输入。" << endl;;
+			for (int i = 0; i < graph->Ne; i++)
 			{
 				cin >> E->V1 >> E->V2 >> E->Weight;
 				InsertEdge(graph, E);
+				cout << "插入完毕。" << endl;
+
 			}
 		}
 		return graph;
@@ -147,12 +165,256 @@ namespace GRAPH2
 
 			for (PtrToAdjVNode w = graph->G[V1].FirstEdge; w; w = w->Next)
 			{
-				this->Visit(w->AdjV);
-				verQue.push(w->AdjV);
+				if (!Visited[w->AdjV])
+				{
+					this->Visit(w->AdjV);
+					verQue.push(w->AdjV);
+				}
+			}
+		}
+	}
+	//无权图的最短路径算法
+	void GraphL::Unweighted(LGraph graph, int dist[], int path[], Vertex S)
+	{
+		queue<Vertex> verQue;
+		verQue.push(S);
+
+		dist[S] = 0;
+
+		while (!verQue.empty())
+		{
+			Vertex V1 = verQue.front();
+			verQue.pop();
+
+			for (PtrToAdjVNode w = graph->G[V1].FirstEdge; w; w = w->Next)
+			{
+				if (dist[w->AdjV]== INFINITY)
+				{
+					dist[w->AdjV] = dist[V1]+1;
+					path[w->AdjV] = path[V1];
+					verQue.push(w->AdjV);
+				}
 			}
 		}
 	}
 
+	inline LGraph GraphL::BuildGraphFromTxt()
+	{
 
+		LGraph graph =NULL;
+
+		ifstream f("./第六讲图上/data.txt");
+		if (f.is_open())
+		{
+			int x;
+			f >> x ;
+			graph = CreateGraph(x);
+			f >> graph->Ne;
+			cout << "图的顶点个数为：" << graph->Nv << "  图的边数为：" << graph->Ne << endl;
+			if (graph->Ne>0)
+			{
+				Edge E = (Edge)malloc(sizeof(struct ENode));
+				for (int i = 0; i < graph->Ne; i++)
+				{
+					f >> E->V1 >> E->V2 >> E->Weight;
+					InsertEdge(graph, E, false);
+					cout << "插入顶点 " << E->V1 << "向" << E->V2 <<"的边，权值为：" << E->Weight << endl;
+
+				}
+			}
+		}
+
+
+		f.close();
+		return graph;
+	}
+
+	bool GraphL::Dijkstra(LGraph graph, int dist[], int path[], Vertex S)
+	{
+		bool collected[MaxVertexNum];
+		/* 初始化：此处默认邻接矩阵中不存在的边用-1表示 */
+		for (PtrToAdjVNode w = graph->G[S].FirstEdge; w; w = w->Next)
+		{
+			dist[w->AdjV] = w->Weight;
+			path[w->AdjV]=S;
+		}
+
+		for (int i = 0; i < graph->Nv; i++)
+		{
+			collected[i] = false;
+		}
+		//先将起点收入集合
+		dist[S] = 0;
+		collected[S] = true;
+
+		while (true)
+		{
+			/* V = 未被收录顶点中dist最小者 */
+			Vertex V = FindMinDist(graph, dist, collected);
+			if (V==-1)
+			{
+				break;
+			}
+			collected[V] = true;
+			for (PtrToAdjVNode w = graph->G[V].FirstEdge; w; w = w->Next)
+			{
+				/* 若W是V的邻接点并且未被收录 */
+				if (collected[w->AdjV]==false)
+				{
+					if (w->Weight < 0) //若有负数
+					{
+						return false;
+					}
+					//更新dist
+					if (dist[V]+w->Weight<dist[w->AdjV])
+					{
+						dist[w->AdjV] = dist[V] + w->Weight;
+						path[w->AdjV] = V;
+					}
+
+
+				}
+			}
+		}
+		return true;
+	}
+
+	Vertex GraphL::FindMinDist(LGraph Graph, int dist[], bool collected[])
+	{
+		int minDist = INFINITY;
+		Vertex minV;
+		for (Vertex  V = 0; V < Graph->Nv; V++)
+		{
+			if (collected[V] == false && dist[V] < minDist)
+			{
+				minDist = dist[V];
+				minV = V;
+			}
+		}
+		if (minDist<INFINITY)
+		{
+			return minV;
+		}
+		else
+		{
+			return -1;
+		}
+	}
+
+
+	void GraphL::init(int num)
+	{
+		Visited = vector<bool>(MaxVertexNum, false);
+
+	}
+	void GraphL::test()
+	{
+		cout << "请选择初始化方式：手动输入请填1，从文本输入填2：" << endl;
+		int tag;
+		cin >> tag;
+		LGraph graph;
+		if (1==tag)
+		{
+			graph = BuildGraph();
+		}
+		else 
+		{
+			graph = BuildGraphFromTxt();
+			if (graph==NULL)
+			{
+				cout << "图的初始化失败." << endl;
+				return;
+			}
+		}
+
+		while (true)
+		{
+			cout << "请输入数字选择哪种搜索模式，1代表深度优先搜索，2代表广度优先，-1退出：" << endl;
+			int m,n = 0;
+			cin >> m;
+			if (-1==m)
+			{
+				break;
+			}
+			cout << "请输入数字选择从哪个数字开始搜索：" << endl;
+			cin >> n;
+			init(graph->Nv);
+
+			if (1==m)
+			{
+				cout << "深度优先搜索：" << endl;
+				DFS(graph, n, &GraphL::Visit);
+			}
+			else if(2 == m)
+			{
+				cout << "广度优先搜索：" << endl;
+				BFS(graph, n, &GraphL::Visit);
+
+			}
+
+		}
+
+		//无权图的最短路径算法
+		int dist[MaxVertexNum];
+		int path[MaxVertexNum];
+
+		while (true)
+		{
+			for (int i = 0; i < graph->Nv; i++)
+			{
+				dist[i] = INFINITY;
+				path[i] = -1;
+			}
+			cout << "无权图的最短路径算法" << endl;
+			cout << "请输入数字选择从哪个顶点开始进入计算：" << endl;
+			int n;
+			cin >> n;
+			if (n==-1)
+			{
+				break;
+			}
+
+			Unweighted(graph, dist, path, n);
+
+			//输出
+			for (int i = 0; i < graph->Nv; i++)
+			{
+				cout << dist[i] << "  ";
+			}
+			cout << endl;
+
+		}
+
+		//有权图的单源最短路算法
+		
+		while (true)
+		{
+			for (int i = 0; i < graph->Nv; i++)
+			{
+				dist[i] = INFINITY;
+				path[i] = -1;
+			}
+			cout << "有权图的单源最短路算法,Dijkstra算法" << endl;
+			cout << "请输入数字选择从哪个顶点开始进入计算：" << endl;
+			int n;
+			cin >> n;
+			if (n == -1)
+			{
+				break;
+			}
+
+			Dijkstra(graph, dist, path, n);
+
+			//输出
+			for (int i = 0; i < graph->Nv; i++)
+			{
+				cout << dist[i] << "  ";
+			}
+			cout << endl;
+
+		}
+
+
+	}
 
 }

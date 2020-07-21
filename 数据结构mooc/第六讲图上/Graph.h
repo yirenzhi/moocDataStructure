@@ -90,6 +90,8 @@ MGraph GraphJ::BuildGraph()
 		{
 			cin >> E->V1 >> E->V2 >> E->Weight;
 			InsertEdge(Graph, E);
+			cout << "插入完毕。" << endl;
+
 		}
 
 	}
@@ -128,14 +130,14 @@ void GraphJ::BFS(MGraph Graph, Vertex S, void(GraphJ::* Visit)(Vertex))
 	{
 		Vertex w = verQue.front();
 		verQue.pop();
-		for (int i = 0; i < Graph->G[w][i]; i++)
+		for (int i = 0; i < Graph->Nv; i++)
 		{
 			Vertex V1 = Graph->G[w][i];
 			if (V1 != INFINITY && !Visited[i])
 			{
 				//BFS(Graph, i, Visit);
-				this->Visit(V1);
-				verQue.push(V1);
+				this->Visit(i);
+				verQue.push(i);
 			}
 		}
 	}
@@ -150,6 +152,7 @@ void GraphJ::test()
 	DFS(graph, 1, &GraphJ::Visit);
 
 	cout << "广度优先搜索：" << endl;
+	init(graph->Nv);
 	BFS(graph, 1, &GraphJ::Visit);
 
 
@@ -157,10 +160,8 @@ void GraphJ::test()
 
 void GraphJ::init(int num)
 {
-	for (size_t i = 0; i < num; i++)
-	{
-		Visited.push_back(false);
-	}
+	Visited = vector<bool>(MaxVertexNum, false);
+
 }
 
 }
