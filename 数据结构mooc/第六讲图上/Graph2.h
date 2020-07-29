@@ -43,8 +43,8 @@ namespace GRAPH2
 	typedef struct GNode *PtrToGNode;
 	struct GNode
 	{
-		int Nv;
-		int Ne;
+		int Nv;//	顶点数
+		int Ne;//	边数
 		AdjList G;
 	};
 
@@ -70,6 +70,13 @@ namespace GRAPH2
 		//有权图的单源最短路算法
 		bool Dijkstra(LGraph Graph, int dist[], int path[], Vertex S);
 		Vertex FindMinDist(LGraph Graph, int dist[], bool collected[]);
+
+		//最小生成树问题，
+		int Prim(LGraph graph, LGraph mst);
+		Vertex FindMinDist(LGraph Graph, WeightType dist[]);
+
+		//拓扑排序，T=O(|V|+|Es|)
+		bool TopSort(LGraph Graph, Vertex TopOrder[]);
 	private:
 		vector<bool> Visited;
 
@@ -300,6 +307,155 @@ namespace GRAPH2
 			return -1;
 		}
 	}
+	Vertex GraphL::FindMinDist(LGraph graph, WeightType dist[])
+	{
+		WeightType minDist = INFINITY;
+		Vertex minV;
+		for (Vertex V = 0; V < graph->Nv; V++)
+		{
+			if (dist[V] != 0 && dist[V] < minDist)
+			{
+				minDist = dist[V];
+				minV = V;
+			}
+		}
+		if (minDist<INFINITY)
+		{
+			return minV;
+		}
+		else
+		{
+			return -1;
+		}
+
+	}
+
+	int GraphL::Prim(LGraph graph, LGraph mst)
+	{
+		//将最新生成树保存成连接表存储的图mst,返回最小权重
+		WeightType dist[MaxVertexNum], totalWeight;
+		Vertex parent[MaxVertexNum], V, W;
+		int VCount;
+		Edge E;
+
+		//初始化，默认初始点下标是0
+		for (int i = 0; i < graph->Nv; i++)
+		{
+			dist[i] = INFINITY;
+			parent[i] = 0;
+
+		}
+		for (PtrToAdjVNode w = graph->G[0].FirstEdge; w; w = w->Next)
+		{
+			dist[w->AdjV] = w->Weight;
+		}
+
+		totalWeight = 0;
+		VCount = 0;		//初始化收录的顶点数
+
+		//创建包含所有顶点但没有边的图。
+		mst = CreateGraph(graph->Nv);
+		E = (Edge)malloc(sizeof(struct ENode));//建立空的边节点
+
+		//将初始点0收录入mst
+		dist[0] = 0;
+		VCount++;
+		parent[0] = -1;	//当前树根是0
+
+		while (true)
+		{
+			V = FindMinDist(graph, dist);
+			//找未被收录的最小值
+			if (V==-1)
+			{
+				break;
+			}
+			//将V及相应的边<parent[V],V>收录进mst
+			E->V1 = parent[V];
+			E->V2 = V;
+			E->Weight = dist[V];
+			InsertEdge(mst, E, false);
+			totalWeight += dist[V];
+			dist[V] = 0;
+			VCount++;
+
+			for (PtrToAdjVNode w = graph->G[V].FirstEdge; w; w = w->Next)
+			{
+				if (dist[w->AdjV]!=0)
+				{
+					if (w->Weight<dist[w->AdjV])
+					{
+						dist[w->AdjV] = w->Weight;
+						parent[w->AdjV] = V;
+					}
+				}
+			}
+
+		}
+		if (VCount<graph->Nv)
+		{
+			totalWeight = -1;
+		}
+		return totalWeight;
+	}
+	inline bool GraphL::TopSort(LGraph graph, Vertex topOrder[])
+	{
+		//对Graph进行拓扑排序，TopOrder[]顺序存储排序后的顶点下标
+		int Indegree[MaxVertexNum], cnt;
+		Vertex V;
+		PtrToAdjVNode W;
+		queue<Vertex> verQue;
+		//verQue.push(S);
+
+		//初始化Indegree[]
+		for ( V = 0; V < graph->Nv; V++)
+		{
+			Indegree[V] = 0;
+		}
+
+		//遍历图得到Indegree[]
+		for (V = 0; V < graph->Nv; V++)
+		{
+			for (W = graph->G[V].FirstEdge; W; W = W->Next)
+			{
+				Indegree[W->AdjV]++;
+			}
+
+		}
+
+		//将所有入度为0的顶点入列
+		for (V = 0; V < graph->Nv; V++)
+		{
+			if (Indegree[V]==0)
+			{
+				verQue.push(V);
+			}
+		}
+
+		//下面进入拓扑排序
+		cnt = 0;
+		while (!verQue.empty())
+		{
+			V = verQue.front();
+			verQue.pop();
+
+			topOrder[cnt++] = V;
+			for (W = graph->G[V].FirstEdge; W; W = W->Next)
+			{
+				if (--Indegree[W->AdjV]==0)
+				{
+					verQue.push(V);
+				}
+			}
+		}
+		if (cnt!=graph->Nv)
+		{
+			return false;
+		}
+
+		return true;
+	}
+
 
 
 	void GraphL::init(int num)
