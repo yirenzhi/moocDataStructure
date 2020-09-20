@@ -130,6 +130,7 @@
     <ClInclude Include="base.h" />
     <ClInclude Include="TestInherit.h" />
     <ClInclude Include="第三讲树上\树的存储.h" />
+    <ClInclude Include="第九讲排序上\SimpleSort.h" />
     <ClInclude Include="第二讲线性结构\2_1.h" />
     <ClInclude Include="第二讲线性结构\堆栈.h" />
     <ClInclude Include="第二讲线性结构\线性表的链式存储.h" />

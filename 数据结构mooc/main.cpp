@@ -11,6 +11,7 @@
 #include "TestInherit.h"
 #include "第六讲图上\Graph.h"
 #include "第六讲图上\Graph2.h"
+#include "第九讲排序上\SimpleSort.h"
 #include <iomanip>
 using namespace std;
 void testExercise5();
@@ -199,9 +200,9 @@ int main()
 	//testInherit();
 
 	//GRAPH1::GraphJ().test();
-	GRAPH2::GraphL().test();
-
-
+	//GRAPH2::GraphL().test();
+	int k = 1 << 3;
+	bool a = 111 & 1 << 2;
 	
 	//testUnion tempUnion;
 	//tempUnion.a = 1;
@@ -210,6 +211,9 @@ int main()
 	//vector<int> b = vector<int>(10, 1);
 	//vector<int> b (10, 1);
 	//testshuzu(a, b);
+
+
+	SimpleSort().test();
 
 	int m;
 	cin >> m;

@@ -28,6 +28,9 @@
     <Filter Include="第六讲图上">
       <UniqueIdentifier>{611ce382-275a-4d40-8a2e-47b7f45e25c2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="第九讲排序上">
+      <UniqueIdentifier>{37906bd2-cead-485a-91d8-bc82d99b30f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="第六讲图上\Graph2.h">
       <Filter>第六讲图上</Filter>
+    </ClInclude>
+    <ClInclude Include="第九讲排序上\SimpleSort.h">
+      <Filter>第九讲排序上</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
