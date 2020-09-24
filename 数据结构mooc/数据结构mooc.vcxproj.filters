@@ -110,5 +110,8 @@
     <ClInclude Include="第九讲排序上\SimpleSort.h">
       <Filter>第九讲排序上</Filter>
     </ClInclude>
+    <ClInclude Include="第九讲排序上\ShellSort.h">
+      <Filter>第九讲排序上</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

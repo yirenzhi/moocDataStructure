@@ -4,8 +4,8 @@ class SimpleSort
 {
 public:
 	void test() {
-		int a[10] = { 1,3,5,6,8,9,4,7,2,0 };
-		Bubble_Sort(a, 10);
+		int a[10] = { 1,3,5,8,9,4,6,7,2,0 };
+		Insertion_Sort2(a, 10);
 		for (size_t i = 0; i < 10; i++)
 		{
 			cout << a[i] << " ";
@@ -46,9 +46,30 @@ private:
 				{
 					a[j] = a[j - 1];
 				}
+				else
+				{
+					break;
+				}
+
 			}
 			a[j] = temp;
 		}
 	}
+
+
+	void Insertion_Sort2(int a[], int n)
+	{
+		for (int i = 1; i < n; i++)
+		{
+			int temp = a[i];
+			int j = i;
+			for (; j >0&& temp < a[j - 1]; j--)
+			{
+					a[j] = a[j - 1];
+			}
+			a[j] = temp;
+		}
+	}
+
 };
 

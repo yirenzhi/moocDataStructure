@@ -12,6 +12,7 @@
 #include "第六讲图上\Graph.h"
 #include "第六讲图上\Graph2.h"
 #include "第九讲排序上\SimpleSort.h"
+#include"第九讲排序上\ShellSort.h"
 #include <iomanip>
 using namespace std;
 void testExercise5();
@@ -213,7 +214,8 @@ int main()
 	//testshuzu(a, b);
 
 
-	SimpleSort().test();
+	//SimpleSort().test();
+	ShellSort().test();
 
 	int m;
 	cin >> m;
