@@ -42,3 +42,21 @@ struct TreeNode
 	BinTree right;
 //	TreeNode(ElementType x) :Data(x),left(NULL),right(NULL){}
 };
+
+
+class Solution
+{
+public:
+	virtual void test() = 0;
+
+private:
+
+};
+
+template <class T>
+void coutVector(const vector<T>& A)
+{
+	for_each(A.begin(), A.end(),
+		[](const T& value) {cout << value << "  "; });
+	cout << endl;
+}

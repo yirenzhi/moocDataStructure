@@ -7,6 +7,7 @@
 #include <stack>
 #include "第四讲树中\平衡二叉树.h"
 #include "第四讲树中\exercise9.h"
+#include"第五讲数下\Heap.h"
 #include "第三讲树上\树的存储.h"
 #include "TestInherit.h"
 #include "第六讲图上\Graph.h"
@@ -14,6 +15,13 @@
 #include "第九讲排序上\SimpleSort.h"
 #include"第九讲排序上\ShellSort.h"
 #include <iomanip>
+#include <ctime>
+#include <chrono>
+#include"task/1_MaximumSubsequenceSum.h"
+#include"task/2_MaximumSubsequenceSum.h"
+#include"task/24_sort.h"
+using namespace chrono;
+
 using namespace std;
 void testExercise5();
 int testExercise6();
@@ -145,6 +153,22 @@ void testshuzu(int a[],vector<int >b)
 {
 	cout << a[0]<<"  "<<b[0];
 }
+
+
+Solution* createSolutin(int num)
+{
+	switch (num)
+	{
+	case 1:
+	{return new Solution1; }break;
+	case 2:
+	{return new Solution2; }break;
+	case 24:
+	{return new Solution24; }break;
+	}
+	return NULL;
+
+}
 int main()
 {
 	cout << "start" << endl;
@@ -202,8 +226,8 @@ int main()
 
 	//GRAPH1::GraphJ().test();
 	//GRAPH2::GraphL().test();
-	int k = 1 << 3;
-	bool a = 111 & 1 << 2;
+	//int k = 1 << 3;
+	//bool a = 111 & 1 << 2;
 	
 	//testUnion tempUnion;
 	//tempUnion.a = 1;
@@ -215,7 +239,41 @@ int main()
 
 
 	//SimpleSort().test();
-	ShellSort().test();
+	//ShellSort().test();
+	//BuildHeap();
+
+
+	while (true)
+	{
+		cout << "请输入题目编号,输入0跳出循环" << endl;
+		int tag;
+		cin >> tag;
+		if (tag == 0)
+		{
+			break;
+		}
+		Solution* sol = createSolutin(tag);
+		if (sol)
+		{
+			auto start = system_clock::now();
+			sol->test();
+			auto end = system_clock::now();
+			auto duration = duration_cast<microseconds>(end - start);
+			cout << "本次执行花费："
+				<< double(duration.count()) * microseconds::period::num / microseconds::period::den
+				<< "秒" << endl;
+
+			//clock_t start = clock();
+			//sol->test();
+			//clock_t end = clock();
+			//cout << "本次执行花费：" << (double)(end - start) / CLOCKS_PER_SEC << "秒。" << endl;
+
+		}
+		else
+		{
+			cout << "编号不存在" << endl;
+		}
+	}
 
 	int m;
 	cin >> m;

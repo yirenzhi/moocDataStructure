@@ -88,7 +88,7 @@ void PercDown(MaxHeap H, int p)
 {
 	int parent, child;
 	ElementType  X;
-	X = H->Data[H->Size--];
+	X = H->Data[p];
 	//用最后一个元素从根节点开始从上向下过滤元素
 	for (parent = p; parent * 2 <= H->Size; parent = child)
 	{
@@ -109,10 +109,16 @@ void PercDown(MaxHeap H, int p)
 	H->Data[parent] = X;
 }
 
-void BuildHeap(MaxHeap H)
+void BuildHeap()
 {
 	int i;
 	//从最后一个节点的父节点开始，到根节点1
+	MaxHeap H = Create(10);
+	H->Data[1] = 2;
+	H->Data[2] = 3;
+	H->Data[3] = 4;
+	H->Data[4] = 5;
+	H->Size = 4;
 	for (int i = H->Size / 2; i >0; i--)
 	{
 		PercDown(H, i);

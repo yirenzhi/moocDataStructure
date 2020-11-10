@@ -31,6 +31,9 @@
     <Filter Include="第九讲排序上">
       <UniqueIdentifier>{37906bd2-cead-485a-91d8-bc82d99b30f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TASK">
+      <UniqueIdentifier>{9d4432f7-20e8-4274-aa6f-31c171871727}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -112,6 +115,15 @@
     </ClInclude>
     <ClInclude Include="第九讲排序上\ShellSort.h">
       <Filter>第九讲排序上</Filter>
+    </ClInclude>
+    <ClInclude Include="task\1_MaximumSubsequenceSum.h">
+      <Filter>TASK</Filter>
+    </ClInclude>
+    <ClInclude Include="task\2_MaximumSubsequenceSum.h">
+      <Filter>TASK</Filter>
+    </ClInclude>
+    <ClInclude Include="task\24_sort.h">
+      <Filter>TASK</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
