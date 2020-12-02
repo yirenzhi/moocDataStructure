@@ -125,5 +125,8 @@
     <ClInclude Include="task\24_sort.h">
       <Filter>TASK</Filter>
     </ClInclude>
+    <ClInclude Include="第九讲排序上\HeapSort.h">
+      <Filter>第九讲排序上</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

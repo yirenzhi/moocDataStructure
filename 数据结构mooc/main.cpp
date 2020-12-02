@@ -14,6 +14,7 @@
 #include "第六讲图上\Graph2.h"
 #include "第九讲排序上\SimpleSort.h"
 #include"第九讲排序上\ShellSort.h"
+#include"第九讲排序上/HeapSort.h"
 #include <iomanip>
 #include <ctime>
 #include <chrono>
@@ -159,16 +160,42 @@ Solution* createSolutin(int num)
 {
 	switch (num)
 	{
-	case 1:
-	{return new Solution1; }break;
-	case 2:
-	{return new Solution2; }break;
-	case 24:
-	{return new Solution24; }break;
+	case 1:{return new Solution1; }break;
+	case 2:{return new Solution2; }break;
+	case 24:{return new Solution24; }break;	
+	
+	
 	}
+	
 	return NULL;
 
 }
+
+
+class A1
+{
+public:
+	void kk()
+	{
+		test();
+	}
+	void test()
+	{
+		cout << "this is A" << endl;;
+	}
+
+private:
+
+};
+
+class B1 :public A1
+{
+public:
+	virtual void test()
+	{
+		cout << "this is B" << endl;
+	}
+};
 int main()
 {
 	cout << "start" << endl;
@@ -241,6 +268,11 @@ int main()
 	//SimpleSort().test();
 	//ShellSort().test();
 	//BuildHeap();
+
+	//B1().kk();
+
+	HeapSort().test();
+
 
 
 	while (true)

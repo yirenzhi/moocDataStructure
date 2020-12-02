@@ -133,6 +133,7 @@
     <ClInclude Include="task\2_MaximumSubsequenceSum.h" />
     <ClInclude Include="TestInherit.h" />
     <ClInclude Include="第三讲树上\树的存储.h" />
+    <ClInclude Include="第九讲排序上\HeapSort.h" />
     <ClInclude Include="第九讲排序上\ShellSort.h" />
     <ClInclude Include="第九讲排序上\SimpleSort.h" />
     <ClInclude Include="第二讲线性结构\2_1.h" />
